@@ -1,9 +1,10 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class ItemBase(BaseModel):
     title: str
     description: str | None = None
+    model_config = ConfigDict(from_attributes=True)
 
 
 class ItemCreate(ItemBase):
@@ -12,6 +13,3 @@ class ItemCreate(ItemBase):
 
 class Item(ItemBase):
     id: int
-
-    class Config:
-        from_attributes = True
